@@ -1,10 +1,10 @@
-Deferer
+h1. Deferer
 
 Launch any method of your models via a TaskQueue.
 
-Usage
+h2. Usage
 
-Model
+h3. Model
 
 package models;
 import models.deferer.ModelTaskInvoker;
@@ -18,23 +18,31 @@ public class MyModel extends Model {
 		return Model.all(MyModel.class).filter("id", id).get();
 	}
 	
-	public void myMethod() {
+	public void myMethod(String param1, Int param2, etc..) {
 	  // execute some application logic here ...
 	}
 	
-	public void deferMyMethod() {
-	  ModelTaskInvoker.defer("queueName", "MyModel", "myMethod", this.id);
+	public void deferMyMethod(String param1, Int param2, etc..) {
+	  *ModelTaskInvoker.defer("queueName", "MyModel", "myMethod", this.id, param1, param2, etc..);*
 	}
 	
+	public static void myStaticMethod(String param1, Int param2, etc..) {
+	  // execute some application logic here ...
+	}
+	
+	public void deferMyStaticMethod(String param1, Int param2, etc..) {
+	  *ModelTaskInvoker.deferStatic("queueName", "MyModel", "myMethod", param1, param2, etc..);*
+	}
 }
 
 Your model must have a Long Id and a method to find it by this id.
+Your methods must have only simple type parameters.
 
-Route for GAE Task
+h3. Route for GAE Task
 
 *   /  module:deferer
 
-Configuration
+h3. Configuration
 
 application.deferer.task=GAETask
 %test.application.deferer.task=MockTask
