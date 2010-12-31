@@ -1,0 +1,9 @@
+# This file defines all module routes (Higher priority routes first)
+#
+# import these routes in the main app as :
+# *     /                       module:deferer
+#
+# ~~~~
+
+
+POST    /GAETasks/{<[a-zA-Z0-9_]{2,}>className}/{<[a-zA-Z0-9_]{2,}>methodName}     deferer.GAETasks.doTask 
